@@ -1,5 +1,5 @@
-{  "homepage": "https://myusername.github.io/my-app",
-  "name": "keep-not",
+{
+  "name": "useeffect",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.2.1",
+    "axios": "^1.13.6",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "tailwindcss": "^4.2.1"
