@@ -5,34 +5,42 @@ import { useEffect, useState } from "react";
 const Gallery = () => {
   const [img, setImg] = useState([]);
   const [page, setPage] = useState(1);
+  const [loading, setLoading] = useState(false);
 
   //api fetch
   useEffect(() => {
-    try {
+    
       const FetchImg = async () => {
+        if (loading) return;
+        setLoading(true);
+        try{
         let response = await axios.get(
           `https://picsum.photos/v2/list?page=${page}&limit=100`,
         );
-        setImg(response.data);
-      };
-      FetchImg();
-    } catch (error) {
+        setImg((prev)=> [...prev,...response.data]);
+      }catch (error) {
       console.log(error);
-    }
+      }finally{
+        setLoading(false);
+      }
+    };
   }, [page]);
 
   // scroll effect
-//   useEffect(() => {
-//     const handelScroll = () => {
-//       if (
-//         window.innerHeight + window.scrollY >=
-//         document.documentElement.scrollHeight - 300
-//       ) {
-//         setPage((prev) => prev + 1);
-//       }
-//     };
-//   });
-// Monday
+  useEffect(() => {
+    const handelScroll = () => {
+      if (
+        window.innerHeight + window.scrollY >=
+        document.documentElement.scrollHeight - 300
+      ) {
+        setPage((prev) => {
+          prev + 1;
+        });
+      }
+    };
+    window.addEventListener("scroll", handelScroll);
+    return () => window.removeEventListener("scrool", handelScroll);
+  });
 
   return (
     <>
