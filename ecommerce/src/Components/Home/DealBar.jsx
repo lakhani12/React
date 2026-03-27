@@ -9,7 +9,7 @@ const DealBar = () => {
     useEffect(() => {
         const fetchDeal = async() => {
             try {
-                let response =await  axios.get('https://dummyjson.com/products?limit=10&skip=10')
+                let response =await  axios.get('https://dummyjson.com/products?limit=10&skip=5')
                 console.log(response.data)
                 setDeal(response.data.products)
             } catch (error) {
@@ -20,12 +20,14 @@ const DealBar = () => {
       }, []);
   return (
     <>
-    <section className='flex w-full pl-10 overflow-x-auto items-center justify-center gap-6 py-10 px-6'>
-        {Deal.map((item) => (
-            <Link to={`/product/${item.id}`} key={item.id}>
-            < DealCard/>
+    <section className='overflow-x-auto w-[80%] mx-autopx-6'>
+     <div className='flex gap-6'>
+           {Deal.map((data) => (
+            <Link to={`/product/${data.id}`} key={data.id}>
+            < DealCard productData={data}/>
             </Link>
         ))}
+     </div>
     </section>
     </>
   )

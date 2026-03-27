@@ -1,20 +1,23 @@
 import React from "react";
 import { Heart } from "lucide-react";
 
-const DealCard = () => {
+const DealCard = ({ productData }) => {
+    let discountPrice =
+    productData.price -
+    (productData.price * productData.discountPercentage) / 100;
   return (
     <div className="w-105 bg-white rounded-xl shadow-md p-4 flex gap-4 hover:shadow-lg transition duration-300">
       {/* Image Section */}
       <div className="relative">
         <img
-          src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1"
+          src={productData.images?.[0]}
           alt="Dress"
           className="w-40 h-52 object-cover rounded-lg"
         />
 
         {/* Discount Badge */}
         <span className="absolute top-2 left-2 bg-green-100 text-green-600 text-xs px-2 py-1 rounded-md font-semibold">
-          50% off
+          {productData.discountPercentage}% off
         </span>
       </div>
 
@@ -23,27 +26,27 @@ const DealCard = () => {
         {/* Top */}
         <div>
           <div className="flex justify-between items-start">
-            <h3 className="text-sm text-gray-500">Dress</h3>
+            <h3 className="text-sm text-gray-500">{productData.category}</h3>
             <Heart className="w-5 h-5 text-gray-400 cursor-pointer hover:text-red-500" />
           </div>
 
-          <h2 className="text-lg font-semibold mt-1">Stylist Dress</h2>
+          <h2 className="text-lg font-semibold mt-1">{productData.title}</h2>
 
           {/* Price */}
           <div className="flex items-center gap-2 mt-1">
-            <span className="text-lg font-bold">$75.00</span>
-            <span className="text-gray-400 line-through text-sm">$150.00</span>
+            <span className="text-lg font-bold">$ {discountPrice}</span>
+            <span className="text-gray-400 line-through text-sm">$ {productData.price}</span>
           </div>
 
           {/* Rating */}
           <div className="flex items-center gap-1 mt-2">
             <span className="text-yellow-400 text-lg">★</span>
-            <span className="font-medium">4.8</span>
+            <span className="font-medium">{productData.rating}</span>
           </div>
 
           {/* Description */}
           <p className="text-sm text-gray-500 mt-2">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            {productData.description}
           </p>
         </div>
 
