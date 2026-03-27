@@ -1,9 +1,8 @@
-import React from 'react'
-import Home from './pages/Home'
+
 import { Route, Routes } from 'react-router-dom'
 import Product from './Pages/Product'
-
 import NavBar from './Layout/NavBar'
+import Home from './Pages/Home'
 
 
 const App = () => {
@@ -12,7 +11,7 @@ const App = () => {
     <NavBar/>
     <Routes>
       <Route>
-        <Route path='/' element={<Home />} />
+        <Route path='/' element={<Home/>} />
            <Route path='/product/:id' element={< Product/>} />
       </Route>
     </Routes>
