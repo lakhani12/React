@@ -10,6 +10,7 @@ import Newsletter from '../Components/Home/Newsletter'
 
 
 
+
 const Home = () => {
   return (
     <>
@@ -21,6 +22,7 @@ const Home = () => {
       <DealBar/>
       <DiscountBar/>
       <Newsletter/>
+      
     
     </>
   )

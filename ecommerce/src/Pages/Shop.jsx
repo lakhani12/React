@@ -3,20 +3,34 @@ import Product from "./Product";
 import ProductCard from "../ui/ProductCard";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 const Shop = () => {
   const [products, setProducts] = useState([]);
+  const params = useParams();
+
+  
 
   useEffect(() => {
     const FetchAllProducts = async () => {
-      try {
-        let responce = await axios.get("https://dummyjson.com/products");
+     if (params.collection) {
+       try {
+        let responce = await axios.get(`https://dummyjson.com/products/category/${params.collection}`);
         console.log(responce.data.products);
         setProducts(responce.data.products);
       } catch (error) {
         console.log(error);
       }
+     } else {
+       try {
+        let responce = await axios.get(`https://dummyjson.com/products/`);
+        console.log(responce.data.products);
+        setProducts(responce.data.products);
+      } catch (error) {
+        console.log(error);
+      }
+      
+     }
     };
     FetchAllProducts();
   }, []);
